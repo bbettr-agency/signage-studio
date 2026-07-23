@@ -14,21 +14,29 @@ export default function PremiumFooter() {
       <div className="pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-brand-primary/5 blur-[100px]" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* CTA strip */}
-        <div className="mb-20 grid items-center gap-8 rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-10 md:grid-cols-[1.5fr_auto] md:p-14">
+        {/* CTA strip — open composition, no boxed card */}
+        <div className="mb-20 grid items-end gap-8 border-b border-white/10 pb-16 md:grid-cols-[1.5fr_auto] md:pb-20">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
-              Let's Make It Loud
+              Let&apos;s make it loud
             </p>
-            <h3 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
+            <h3 className="max-w-2xl font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               Ready to put your brand on the road or up on the wall?
             </h3>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-            <Button href="/contact" variant="primary" withArrow>
+          <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-end">
+            <Button
+              href={siteConfig.quoteHref}
+              variant="primary"
+              withArrow
+            >
               {siteConfig.cta}
             </Button>
-            <Button href={siteConfig.phoneLink} variant="ghost">
+            <Button
+              href={siteConfig.phoneLink}
+              variant="ghost"
+              ariaLabel={`${siteConfig.callCta} on ${siteConfig.phoneDisplay}`}
+            >
               {siteConfig.phoneDisplay}
             </Button>
           </div>

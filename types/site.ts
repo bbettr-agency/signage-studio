@@ -12,6 +12,12 @@ export type ServiceItem = {
   bullets?: string[];
   image?: string;
   longDescription?: string;
+  /** Outcome-led headline used in editorial / featured sections. */
+  outcome?: string;
+  /** One-line suits (who/what it's for) for the editorial featured row. */
+  suits?: string;
+  /** Feature on the homepage's editorial "What We Do" trio. */
+  featured?: boolean;
 };
 
 export type TrustItem = {

@@ -45,3 +45,31 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #008896;
 }
+
+/* --------------------------------------------------------------------------
+   Illuminated word — "professional sign switching on" effect.
+   Subtle brightness + saturation ramp only. No sweep, no loop, no glow.
+   Runs after the surrounding headline has faded in.
+   -------------------------------------------------------------------------- */
+@keyframes sign-on {
+  0% {
+    opacity: 0.18;
+    filter: brightness(0.4) saturate(0.55);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) saturate(1);
+  }
+}
+
+.illuminated-word {
+  animation: sign-on 1s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .illuminated-word {
+    animation: none;
+    opacity: 1;
+    filter: none;
+  }
+}

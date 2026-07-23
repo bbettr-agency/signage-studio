@@ -55,13 +55,13 @@ export default function ContactForm() {
           </div>
 
           <h2 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
-            Let's scope your
+            Let&apos;s scope your
             <br />
             <span className="text-white/40">signage project.</span>
           </h2>
 
           <p className="mt-6 max-w-md text-base leading-7 text-white/65">
-            Send through your brief and we'll respond within one business day
+            Send through your brief and we&apos;ll respond within one business day
             with a detailed, line-item quote — no obligation.
           </p>
 

@@ -4,6 +4,8 @@ export const servicesConfig: ServiceItem[] = [
   {
     title: "Vehicle Branding",
     slug: "vehicle-branding",
+    outcome: "Turn vehicles into billboards on wheels",
+    suits: "Delivery fleets, courier vans, service bakkies, retail cars.",
     description:
       "Full wraps, partial wraps and fleet branding using premium cast vinyl built to last in any climate.",
     longDescription:
@@ -11,11 +13,14 @@ export const servicesConfig: ServiceItem[] = [
     icon: "Car",
     href: "/services#vehicle-branding",
     bullets: ["Full & partial wraps", "Fleet rollouts", "Cast vinyl", "5-year warranty"],
+    featured: true,
     // Vehicle wrap photography coming soon — request a quote to see samples.
   },
   {
     title: "Building Signage",
     slug: "building-signage",
+    outcome: "Make your building the landmark on the street",
+    suits: "Retail storefronts, corporate HQs, dealerships, showrooms.",
     description:
       "Architectural facades, 3D fabricated letters, pylons and illuminated storefront signs engineered to spec.",
     longDescription:
@@ -24,10 +29,13 @@ export const servicesConfig: ServiceItem[] = [
     href: "/services#building-signage",
     bullets: ["3D fabricated letters", "Pylon & monument signs", "ACM facades", "Site surveys"],
     image: "/projects/pylon-signs/pylon-signs-2.jpg",
+    featured: true,
   },
   {
     title: "Light Boxes",
     slug: "light-boxes",
+    outcome: "Stay lit — and on brand — day and night",
+    suits: "Restaurants, retail, hospitality, service shops.",
     description:
       "Slimline LED light boxes that stay sharp day and night — built for retail, hospitality and corporate.",
     longDescription:
@@ -40,6 +48,8 @@ export const servicesConfig: ServiceItem[] = [
   {
     title: "PVC Banners",
     slug: "pvc-banners",
+    outcome: "Get seen at scale, fast",
+    suits: "Events, launches, construction hoarding, promotions.",
     description:
       "Heavy-duty printed PVC banners for events, construction, retail and outdoor brand activations.",
     longDescription:
@@ -52,6 +62,8 @@ export const servicesConfig: ServiceItem[] = [
   {
     title: "Window Branding",
     slug: "window-branding",
+    outcome: "Turn glass into a brand canvas",
+    suits: "Storefronts, clinics, offices, showrooms.",
     description:
       "Frosted, one-way vision and full colour window graphics that turn glass into a brand canvas.",
     longDescription:
@@ -64,6 +76,8 @@ export const servicesConfig: ServiceItem[] = [
   {
     title: "Chromadek Signs",
     slug: "chromadek-signs",
+    outcome: "Weatherproof branding that lasts on site",
+    suits: "Factories, warehouses, gates, industrial parks.",
     description:
       "Powder-coated Chromadek signage for industrial sites, warehouses, gates and perimeter branding.",
     longDescription:
@@ -76,6 +90,8 @@ export const servicesConfig: ServiceItem[] = [
   {
     title: "Custom Signage",
     slug: "custom-signage",
+    outcome: "Bespoke pieces that stop traffic",
+    suits: "Boutiques, showrooms, hospitality, one-off installations.",
     description:
       "Bespoke fabrication — neon, acrylic, brushed metal, laser-cut lettering and one-of-one display pieces.",
     longDescription:
@@ -84,10 +100,13 @@ export const servicesConfig: ServiceItem[] = [
     href: "/services#custom-signage",
     bullets: ["Neon & acrylic", "Laser-cut lettering", "Bespoke fabrication", "Perspex & CNC"],
     image: "/projects/neon-rope/neon-rope-1.jpg",
+    featured: true,
   },
   {
     title: "Installations",
     slug: "installations",
+    outcome: "Rigging, height work and site management, in-house",
+    suits: "Large builds, height-restricted sites, nationwide rollouts.",
     description:
       "Certified installation teams handling rigging, height work and site management end to end.",
     longDescription:

@@ -26,6 +26,10 @@ const config: Config = {
           steel: "#2A2A2A",
           mist: "#F5F5F4",
           bone: "#E7E5E4",
+          // Warm light surfaces — used strategically for visual rhythm
+          cream: "#F7F2E7",
+          sand: "#EDE4CE",
+          coffee: "#3B2E1F",
         },
       },
       fontFamily: {
@@ -52,14 +56,15 @@ const config: Config = {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
+        "glow-sweep": {
+          "0%": { backgroundPosition: "-120% 50%" },
+          "100%": { backgroundPosition: "220% 50%" },
         },
       },
       animation: {
-        marquee: "marquee 35s linear infinite",
-        shimmer: "shimmer 6s linear infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-slow": "marquee 60s linear infinite",
+        "glow-sweep": "glow-sweep 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
       },
     },
   },

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, X } from "lucide-react";
+import { MessageCircle, Phone, X } from "lucide-react";
 
 import { navigationConfig } from "@/config/navigation-config";
 import { siteConfig } from "@/config/site-config";
@@ -96,17 +96,30 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <a
                 href={siteConfig.phoneLink}
                 onClick={onClose}
+                aria-label={`${siteConfig.callCta} on ${siteConfig.phoneDisplay}`}
                 className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/80 transition hover:border-brand-primary/40 hover:text-white"
               >
                 <Phone className="h-4 w-4 text-brand-primary" />
                 {siteConfig.phoneDisplay}
               </a>
+              <a
+                href={siteConfig.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                aria-label="WhatsApp Signage Studio"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/80 transition hover:border-brand-primary/40 hover:text-white"
+              >
+                <MessageCircle className="h-4 w-4 text-brand-primary" />
+                WhatsApp
+              </a>
               <Button
-                href="/contact"
+                href={siteConfig.quoteHref}
                 variant="primary"
                 size="lg"
                 withArrow
                 className="w-full"
+                onClick={onClose}
               >
                 {siteConfig.cta}
               </Button>

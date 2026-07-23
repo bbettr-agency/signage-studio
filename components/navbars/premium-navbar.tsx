@@ -77,13 +77,19 @@ export default function PremiumNavbar() {
           <div className="hidden items-center gap-3 md:flex">
             <a
               href={siteConfig.phoneLink}
+              aria-label={`${siteConfig.callCta} on ${siteConfig.phoneDisplay}`}
               className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 backdrop-blur transition hover:border-brand-primary/50 hover:text-white"
             >
               <Phone className="h-3.5 w-3.5 text-brand-primary" />
               {siteConfig.phoneDisplay}
             </a>
-            <Button href="/contact" size="md" variant="primary" withArrow>
-              {siteConfig.cta}
+            <Button
+              href={siteConfig.quoteHref}
+              size="md"
+              variant="primary"
+              withArrow
+            >
+              {siteConfig.ctaShort}
             </Button>
           </div>
 

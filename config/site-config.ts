@@ -21,8 +21,15 @@ export const siteConfig = {
     { day: "Public Holidays", time: "Closed" },
   ],
   website: "https://signagestudio.co.za",
-  cta: "Request A Quote",
-  ctaShort: "Get Quote",
+  // Consistent CTA vocabulary — used everywhere via config, never hardcoded.
+  cta: "Get a Free Signage Quote",
+  ctaShort: "Get a Quote",
+  quoteHref: "/contact",
+  secondaryCta: {
+    label: "View Our Work",
+    href: "/projects",
+  },
+  callCta: "Call Signage Studio",
   primaryService: "Vehicle Branding & Signage",
   city: "Silverton",
   region: "Pretoria",

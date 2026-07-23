@@ -4,49 +4,58 @@ import { motion } from "framer-motion";
 
 import { processConfig } from "@/config/process-config";
 import SectionContainer from "@/components/layout/section-container";
-import SectionHeading from "@/components/ui/section-heading";
 
+/**
+ * Our Process — moved to the warm cream surface for readability.
+ * Open composition: numbered steps separated by thin dividers, no boxed cards.
+ * Instructional copy reads better on light; still bookended by dark sections
+ * so the rhythm stays intentional.
+ */
 export default function ProcessSteps() {
   return (
-    <SectionContainer className="relative overflow-hidden bg-brand-charcoal text-white">
-      <div className="pointer-events-none absolute -right-32 top-1/3 h-[400px] w-[400px] rounded-full bg-brand-primary/10 blur-[120px]" />
+    <SectionContainer className="bg-brand-cream text-brand-ink">
+      <div className="mx-auto max-w-3xl text-center">
+        <span
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary"
+          aria-hidden
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-primary" />
+          How We Work
+        </span>
 
-      <SectionHeading
-        eyebrow="Our Process"
-        title={
-          <>
-            From brief to handover —
-            <br />
-            <span className="text-white/40">no surprises.</span>
-          </>
-        }
-        description="A clean four-step process that keeps every project on time, on spec and on brand."
-        align="center"
-      />
+        <h2 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-brand-ink md:text-5xl">
+          From brief to handover —
+          <br />
+          <span className="text-brand-ink/45">no surprises.</span>
+        </h2>
 
-      <div className="relative grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:grid-cols-4">
+        <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-brand-ink/65">
+          A clean four-step process that keeps every project on time, on spec
+          and on brand.
+        </p>
+      </div>
+
+      <div className="mt-20 grid gap-12 md:grid-cols-4 md:gap-0 md:divide-x md:divide-brand-ink/10">
         {processConfig.map((step, i) => (
           <motion.div
             key={step.number}
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
+            transition={{ duration: 0.55, delay: i * 0.08 }}
             viewport={{ once: true }}
-            className="group relative bg-brand-charcoal p-8 transition-colors duration-500 hover:bg-brand-graphite md:p-10"
+            className="relative md:px-8 md:first:pl-0 md:last:pr-0"
           >
-            <div className="font-display text-5xl font-bold text-white/10 transition-colors duration-500 group-hover:text-brand-primary md:text-6xl">
+            <span className="font-display text-6xl font-bold text-brand-accentDark/85 md:text-7xl">
               {step.number}
-            </div>
+            </span>
 
-            <h3 className="mt-6 font-display text-xl font-bold text-white md:text-2xl">
+            <h3 className="mt-6 font-display text-xl font-semibold tracking-tight text-brand-ink md:text-2xl">
               {step.title}
             </h3>
 
-            <p className="mt-3 text-sm leading-6 text-white/55">
+            <p className="mt-3 max-w-xs text-sm leading-6 text-brand-ink/60 md:text-base md:leading-7">
               {step.description}
             </p>
-
-            <div className="mt-8 h-px w-12 bg-white/10 transition-all duration-500 group-hover:w-20 group-hover:bg-brand-primary" />
           </motion.div>
         ))}
       </div>
