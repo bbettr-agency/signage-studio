@@ -26,10 +26,12 @@ export default function AboutPage() {
         image="/projects/lightboxes/lightboxes-3.jpg"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
+      {/* Rhythm: hero(dark) → story(cream) → stats(dark) → why(cream)
+          → values(dark) → process(cream) → reviews(cream) → cta(dark) */}
       <AboutStory />
       <StatsBand />
-      <Values />
       <WhyUs />
+      <Values />
       <ProcessSteps />
       <GoogleReviews />
       <FinalCta />

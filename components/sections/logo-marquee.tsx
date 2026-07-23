@@ -55,15 +55,18 @@ export default function LogoMarquee({
           {track.map((logo, i) => (
             <div
               key={`${logo.src}-${i}`}
-              className="relative mr-16 h-14 w-32 shrink-0 md:mr-24 md:h-16 md:w-40"
+              className="relative mr-16 h-20 w-52 shrink-0 md:mr-28 md:h-28 md:w-72"
               title={logo.name}
             >
+              {/* brightness-0 + invert forces every logo to a uniform bright
+                  white — the only reliable treatment on a dark background
+                  when logo colours are mixed (some pale, some dark). */}
               <Image
                 src={logo.src}
                 alt=""
                 fill
-                sizes="160px"
-                className="object-contain opacity-55 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0"
+                sizes="(max-width: 768px) 208px, 288px"
+                className="object-contain opacity-70 brightness-0 invert transition-opacity duration-500 hover:opacity-100"
               />
             </div>
           ))}
@@ -75,15 +78,15 @@ export default function LogoMarquee({
         {clientLogos.map((logo) => (
           <div
             key={logo.src}
-            className="relative h-14 w-32"
+            className="relative h-20 w-52 md:h-24 md:w-60"
             title={logo.name}
           >
             <Image
               src={logo.src}
               alt={`${logo.name} — Signage Studio client`}
               fill
-              sizes="160px"
-              className="object-contain opacity-70 grayscale"
+              sizes="240px"
+              className="object-contain opacity-80 brightness-0 invert"
             />
           </div>
         ))}

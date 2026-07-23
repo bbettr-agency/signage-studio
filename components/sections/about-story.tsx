@@ -8,9 +8,14 @@ import { siteConfig } from "@/config/site-config";
 import SectionContainer from "@/components/layout/section-container";
 import SectionHeading from "@/components/ui/section-heading";
 
+/**
+ * About story — cream editorial pause.
+ * Portrait studio photo on cream; dark badge floats over the image for a
+ * magazine-like contrast without a "template card" feel.
+ */
 export default function AboutStory() {
   return (
-    <SectionContainer className="bg-brand-ink text-white">
+    <SectionContainer className="bg-brand-cream text-brand-ink">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -19,7 +24,7 @@ export default function AboutStory() {
           viewport={{ once: true }}
           className="relative"
         >
-          <div className="relative overflow-hidden rounded-3xl border border-white/10">
+          <div className="relative overflow-hidden rounded-3xl border border-brand-ink/10">
             <div className="relative aspect-[4/5]">
               <Image
                 src={aboutConfig.story.image}
@@ -28,17 +33,17 @@ export default function AboutStory() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-cream/30 via-transparent to-transparent" />
             </div>
           </div>
 
-          {/* Floating badge */}
-          <div className="absolute -bottom-6 -right-4 rounded-2xl border border-white/10 bg-brand-charcoal/90 p-6 shadow-ink backdrop-blur md:-right-8">
+          {/* Floating badge — dark contrast on cream, magazine-style */}
+          <div className="absolute -bottom-6 -right-4 rounded-2xl border border-brand-ink/10 bg-brand-ink p-6 shadow-ink md:-right-8">
             <div className="font-display text-4xl font-bold text-brand-accent">
               Est. {siteConfig.established}
             </div>
-            <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/45">
-              Johannesburg Studio
+            <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/55">
+              {siteConfig.region} Studio
             </div>
           </div>
         </motion.div>
@@ -51,11 +56,12 @@ export default function AboutStory() {
         >
           <SectionHeading
             eyebrow="Our Story"
+            tone="light"
             title={
               <>
                 A signage studio,
                 <br />
-                <span className="text-white/40">not a print shop.</span>
+                <span className="text-brand-ink/45">not a print shop.</span>
               </>
             }
             className="mb-8"
@@ -63,7 +69,10 @@ export default function AboutStory() {
 
           <div className="space-y-5">
             {aboutConfig.story.paragraphs.map((p, i) => (
-              <p key={i} className="text-base leading-7 text-white/65 md:text-lg">
+              <p
+                key={i}
+                className="text-base leading-7 text-brand-ink/70 md:text-lg"
+              >
                 {p}
               </p>
             ))}

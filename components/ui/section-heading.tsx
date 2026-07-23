@@ -32,9 +32,8 @@ export default function SectionHeading({
         <div
           className={cn(
             "mb-5 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em]",
-            isDark
-              ? "border-brand-primary/30 bg-brand-primary/10 text-brand-primary"
-              : "border-brand-ink/15 bg-brand-ink/5 text-brand-ink"
+            // Teal eyebrow on both tones — brand-consistent at every heading.
+            "border-brand-primary/30 bg-brand-primary/10 text-brand-primary"
           )}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-brand-primary" />

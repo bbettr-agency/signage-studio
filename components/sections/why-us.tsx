@@ -8,18 +8,17 @@ import SectionHeading from "@/components/ui/section-heading";
 import Icon from "@/components/ui/icon";
 
 /**
- * "Why Choose Signage Studio" — deboxed.
- * Was: four glassy bordered cards. Now: a thin-divider list of principles
- * with icons + short outcome copy. Reads as premium editorial, not template.
+ * "Why Choose Signage Studio" — cream editorial rhythm.
+ * Warm cream surface with thin ink dividers; icons stay teal for continuity
+ * with the dark sections above/below.
  */
 export default function WhyUs() {
   return (
-    <SectionContainer className="bg-brand-charcoal text-white">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
+    <SectionContainer className="bg-brand-cream text-brand-ink">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:gap-24">
         <SectionHeading
           eyebrow="Why Choose Signage Studio"
+          tone="light"
           title={
             <>
               Engineered to last.
@@ -31,7 +30,7 @@ export default function WhyUs() {
           className="mb-0"
         />
 
-        <ul className="divide-y divide-white/10 border-y border-white/10">
+        <ul className="divide-y divide-brand-ink/10 border-y border-brand-ink/10">
           {trustConfig.map((item, i) => (
             <motion.li
               key={item.title}
@@ -46,10 +45,10 @@ export default function WhyUs() {
               </span>
 
               <div className="flex-1">
-                <h3 className="font-display text-lg font-semibold text-white md:text-xl">
+                <h3 className="font-display text-lg font-semibold text-brand-ink md:text-xl">
                   {item.title}
                 </h3>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-white/60 md:text-base md:leading-7">
+                <p className="mt-2 max-w-xl text-sm leading-6 text-brand-ink/65 md:text-base md:leading-7">
                   {item.description}
                 </p>
               </div>

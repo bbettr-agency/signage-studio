@@ -38,9 +38,16 @@ const details = [
   },
 ];
 
+/**
+ * Contact — warm cream section for the enquiry step, with the FormShell staying
+ * dark so the form itself reads as the focal, action-ready card.
+ */
 export default function ContactForm() {
   return (
-    <SectionContainer id="quote" className="bg-brand-ink text-white">
+    <SectionContainer
+      id="quote"
+      className="bg-brand-cream text-brand-ink"
+    >
       <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         {/* Left — details */}
         <motion.div
@@ -54,13 +61,13 @@ export default function ContactForm() {
             Get In Touch
           </div>
 
-          <h2 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
+          <h2 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-brand-ink md:text-5xl">
             Let&apos;s scope your
             <br />
-            <span className="text-white/40">signage project.</span>
+            <span className="text-brand-ink/45">signage project.</span>
           </h2>
 
-          <p className="mt-6 max-w-md text-base leading-7 text-white/65">
+          <p className="mt-6 max-w-md text-base leading-7 text-brand-ink/70">
             Send through your brief and we&apos;ll respond within one business day
             with a detailed, line-item quote — no obligation.
           </p>
@@ -73,10 +80,10 @@ export default function ContactForm() {
                     <d.icon className="h-5 w-5" />
                   </span>
                   <span>
-                    <span className="block text-xs uppercase tracking-[0.15em] text-white/40">
+                    <span className="block text-xs uppercase tracking-[0.15em] text-brand-ink/45">
                       {d.label}
                     </span>
-                    <span className="mt-0.5 block font-medium text-white">
+                    <span className="mt-0.5 block font-medium text-brand-ink">
                       {d.value}
                     </span>
                   </span>
@@ -87,14 +94,14 @@ export default function ContactForm() {
                 <a
                   key={d.label}
                   href={d.href}
-                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition hover:border-brand-primary/40 hover:bg-white/[0.04]"
+                  className="flex items-center gap-4 rounded-2xl border border-brand-ink/10 bg-white/40 p-4 transition hover:border-brand-primary/40 hover:bg-white/70"
                 >
                   {Inner}
                 </a>
               ) : (
                 <div
                   key={d.label}
-                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-4"
+                  className="flex items-center gap-4 rounded-2xl border border-brand-ink/10 bg-white/40 p-4"
                 >
                   {Inner}
                 </div>
@@ -103,7 +110,7 @@ export default function ContactForm() {
           </div>
         </motion.div>
 
-        {/* Right — GHL form placeholder */}
+        {/* Right — dark FormShell = focal action card on cream */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
