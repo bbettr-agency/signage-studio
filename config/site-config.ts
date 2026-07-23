@@ -1,0 +1,35 @@
+export const siteConfig = {
+  businessName: "Signage Studio",
+  shortName: "Signage Studio",
+  tagline:
+    "Bold signage and brand installations engineered to make your business impossible to ignore.",
+  description:
+    "Signage Studio is a premium signage studio crafting vehicle wraps, building signage, light boxes, banners and full brand installations across South Africa.",
+  phone: "+27 66 296 9142",
+  phoneDisplay: "066 296 9142",
+  phoneLink: "tel:+27662969142",
+  whatsapp: "066 296 9142",
+  whatsappLink: "https://wa.me/27662969142",
+  email: "info@signagestudio.co.za",
+  emailLink: "mailto:info@signagestudio.co.za",
+  address: "329 Dykor Road, Silverton, 0184",
+  hours: "Mon – Fri · 08:00 – 16:30",
+  hoursDetail: [
+    { day: "Monday – Friday", time: "08:00 – 16:30" },
+    { day: "Saturday", time: "Closed" },
+    { day: "Sunday", time: "Closed" },
+    { day: "Public Holidays", time: "Closed" },
+  ],
+  website: "https://signagestudio.co.za",
+  cta: "Request A Quote",
+  ctaShort: "Get Quote",
+  primaryService: "Vehicle Branding & Signage",
+  city: "Silverton",
+  region: "Pretoria",
+  country: "South Africa",
+  established: "2014",
+  social: {
+    instagram: "https://www.instagram.com/signagestudio_silverton",
+    facebook: "https://www.facebook.com/profile.php?id=100090483562207",
+  },
+};
