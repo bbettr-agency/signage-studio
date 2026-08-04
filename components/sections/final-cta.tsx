@@ -15,7 +15,7 @@ export default function FinalCta() {
   return (
     <section className="relative overflow-hidden bg-brand-ink px-6 py-28 text-white md:py-36 lg:px-8">
       {/* Soft top divider so the section transition doesn't feel abrupt */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-primary/25" />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -33,9 +33,7 @@ export default function FinalCta() {
           Got a vehicle, a wall
           <br />
           or a brand to make{" "}
-          <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
-            unmissable?
-          </span>
+          <span className="text-brand-accent">unmissable?</span>
         </h2>
 
         <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-white/65 md:text-lg md:leading-8">

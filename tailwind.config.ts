@@ -40,15 +40,7 @@ const config: Config = {
         "2xl": "1.25rem",
         "3xl": "1.75rem",
       },
-      backgroundImage: {
-        "grid-fade":
-          "linear-gradient(180deg, rgba(11,11,11,0) 0%, rgba(11,11,11,0.8) 80%, rgba(11,11,11,1) 100%)",
-        "radial-glow":
-          "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,136,150,0.20), transparent 70%)",
-      },
       boxShadow: {
-        glow: "0 20px 60px -20px rgba(0,136,150,0.45)",
-        accent: "0 20px 60px -20px rgba(242,180,67,0.40)",
         ink: "0 30px 80px -30px rgba(0,0,0,0.8)",
       },
       keyframes: {

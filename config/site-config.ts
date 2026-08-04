@@ -8,14 +8,22 @@ export const siteConfig = {
   phone: "+27 66 296 9142",
   phoneDisplay: "066 296 9142",
   phoneLink: "tel:+27662969142",
-  whatsapp: "066 296 9142",
-  whatsappLink: "https://wa.me/27662969142",
+  // WhatsApp — separate live number for enquiries.
+  whatsapp: "082 450 3848",
+  whatsappNumber: "+27 82 450 3848",
+  whatsappLink:
+    "https://wa.me/27824503848?text=" +
+    encodeURIComponent(
+      "Hi Signage Studio, I would like to enquire about signage for my business."
+    ),
+  whatsappMessage:
+    "Hi Signage Studio, I would like to enquire about signage for my business.",
   email: "info@signagestudio.co.za",
   emailLink: "mailto:info@signagestudio.co.za",
   address: "329 Dykor Road, Silverton, 0184",
-  hours: "Mon – Fri · 08:00 – 16:30",
+  hours: "Mon – Fri · 07:30 – 16:30",
   hoursDetail: [
-    { day: "Monday – Friday", time: "08:00 – 16:30" },
+    { day: "Monday – Friday", time: "07:30 – 16:30" },
     { day: "Saturday", time: "Closed" },
     { day: "Sunday", time: "Closed" },
     { day: "Public Holidays", time: "Closed" },
@@ -34,7 +42,7 @@ export const siteConfig = {
   city: "Silverton",
   region: "Pretoria",
   country: "South Africa",
-  established: "2014",
+  established: "2004",
   social: {
     instagram: "https://www.instagram.com/signagestudio_silverton",
     facebook: "https://www.facebook.com/profile.php?id=100090483562207",

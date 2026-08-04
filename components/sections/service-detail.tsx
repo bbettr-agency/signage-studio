@@ -51,7 +51,6 @@ export default function ServiceDetail() {
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-cream/20 via-transparent to-transparent" />
                   </>
                 ) : (
                   <div className="flex h-full flex-col items-center justify-center bg-brand-ink text-center">

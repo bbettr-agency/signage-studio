@@ -58,7 +58,7 @@ export default function ProjectsPreview() {
                   sizes="(max-width: 768px) 100vw, 60vw"
                   className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/30 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-brand-ink/75" />
 
                 <div className="absolute left-5 top-5">
                   <span className="inline-flex items-center rounded-full border border-white/20 bg-brand-ink/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">

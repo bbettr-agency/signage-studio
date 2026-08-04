@@ -29,7 +29,7 @@ const sizes: Record<ButtonSize, string> = {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-ink hover:shadow-accent",
+    "bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-ink",
   secondary:
     "bg-white text-brand-ink hover:bg-brand-accent",
   ghost:

@@ -28,7 +28,7 @@ export default function Card({
         "relative rounded-2xl p-7 transition-all duration-500 md:p-8",
         tones[tone],
         interactive &&
-          "hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-glow",
+          "hover:-translate-y-1 hover:border-brand-primary/40",
         className
       )}
     >

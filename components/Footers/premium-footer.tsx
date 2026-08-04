@@ -10,8 +10,7 @@ import Logo from "@/components/ui/logo";
 export default function PremiumFooter() {
   return (
     <footer className="relative overflow-hidden bg-brand-ink pt-24 text-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-full max-w-7xl -translate-x-1/2 bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent" />
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-brand-primary/5 blur-[100px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-full max-w-7xl -translate-x-1/2 bg-brand-primary/25" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* CTA strip — open composition, no boxed card */}

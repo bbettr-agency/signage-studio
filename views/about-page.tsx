@@ -22,7 +22,7 @@ export default function AboutPage() {
             <span className="text-white/40">refuse to blend in.</span>
           </>
         }
-        description="A decade of vehicle wraps, building signage and installations across South Africa — engineered in-house, installed by our own certified crews."
+        description="Two decades of vehicle wraps, building signage and installations across South Africa — engineered in-house, installed by our own certified crews."
         image="/projects/lightboxes/lightboxes-3.jpg"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />

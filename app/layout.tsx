@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 
 import { createMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/config/site-config";
+import FloatingActions from "@/components/ui/floating-actions";
 
 const body = Inter({
   subsets: ["latin"],
@@ -43,7 +44,7 @@ const businessSchema = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
+      opens: "07:30",
       closes: "16:30",
     },
   ],
@@ -71,7 +72,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-brand-ink text-white antialiased">{children}</body>
+      <body className="bg-brand-ink pb-24 text-white antialiased md:pb-0">
+        {children}
+        <FloatingActions />
+      </body>
     </html>
   );
 }

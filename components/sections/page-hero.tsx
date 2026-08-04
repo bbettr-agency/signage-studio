@@ -37,8 +37,8 @@ export default function PageHero({
         </div>
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-ink via-brand-ink/85 to-brand-ink" />
-      <div className="absolute inset-0 bg-radial-glow" />
+      {/* Solid dark overlay — no gradients. */}
+      <div className="absolute inset-0 bg-brand-ink/85" />
       <div className="pointer-events-none absolute -top-24 left-1/3 h-[420px] w-[420px] rounded-full bg-brand-primary/15 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pb-20 pt-36 md:pb-28 md:pt-44 lg:px-8">

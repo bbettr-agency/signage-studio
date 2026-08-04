@@ -21,8 +21,6 @@ export default function FormShell({
         className
       )}
     >
-      <div className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-br from-brand-primary/20 via-transparent to-transparent opacity-50 [mask:linear-gradient(#000,#000)_content-box,linear-gradient(#000,#000)] [mask-composite:exclude] pointer-events-none" />
-
       <div className="relative rounded-[1.5rem] border border-white/[0.06] bg-brand-ink/80 p-8">
         {(title || description) && (
           <div className="mb-7">

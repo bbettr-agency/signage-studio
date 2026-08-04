@@ -32,10 +32,11 @@ export default function CinematicHero() {
           sizes="100vw"
           className="object-cover object-center opacity-55"
         />
-        {/* Two soft gradients — one for legibility, one for depth. Kept
-            intentionally simple so the photo remains the star. */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/70 to-brand-ink/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/85 via-brand-ink/40 to-transparent" />
+        {/* Solid tinted overlays — no gradients. Two flat layers give both
+            base contrast for the whole viewport and stronger contrast on the
+            text column so the headline stays crisp. */}
+        <div className="absolute inset-0 bg-brand-ink/55" />
+        <div className="absolute inset-y-0 left-0 w-full bg-brand-ink/45 md:w-2/3" />
       </div>
 
       {/* Content — clean editorial column, no boxes. */}
@@ -57,10 +58,8 @@ export default function CinematicHero() {
           className="mt-8 max-w-5xl font-display text-[2.75rem] font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.75rem]"
         >
           Professional signage that makes your brand{" "}
-          <span className="relative inline-block">
-            <span className="illuminated-word bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary bg-clip-text text-transparent motion-reduce:opacity-100 motion-reduce:[animation:none]">
-              impossible
-            </span>
+          <span className="illuminated-word text-brand-accent motion-reduce:opacity-100 motion-reduce:[animation:none]">
+            impossible
           </span>{" "}
           to miss.
         </motion.h1>

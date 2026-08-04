@@ -2,9 +2,9 @@ import { TrustItem } from "@/types/site";
 
 export const trustConfig: TrustItem[] = [
   {
-    title: "10+ Years In The Field",
+    title: "20+ Years In The Field",
     description:
-      "A decade of fabricating, printing and installing signage across South Africa.",
+      "Two decades of fabricating, printing and installing signage across South Africa.",
     icon: "Award",
   },
   {
