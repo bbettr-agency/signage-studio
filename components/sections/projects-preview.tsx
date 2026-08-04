@@ -36,19 +36,23 @@ export default function ProjectsPreview() {
         </Link>
       </div>
 
-      <div className="mt-16 grid gap-5 md:grid-cols-6">
+      <div className="mt-16 grid gap-6 md:grid-cols-6">
         {featured.map((project, i) => {
           const isLarge = i === 0 || i === 3;
           return (
             <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={project.image}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: i * 0.08 }}
-              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.55,
+                delay: i * 0.06,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              viewport={{ once: true, margin: "-60px" }}
               className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-brand-graphite ${
                 isLarge ? "md:col-span-4" : "md:col-span-2"
-              } ${i === 0 || i === 1 ? "" : ""}`}
+              }`}
             >
               <div className="relative aspect-[4/3] overflow-hidden md:aspect-[16/10]">
                 <Image
@@ -56,12 +60,18 @@ export default function ProjectsPreview() {
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 60vw"
-                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-[800ms] ease-out will-change-transform group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-brand-ink/75" />
+
+                {/* Small solid strip only where the title needs contrast.
+                    Sized to the title + location + padding — not a huge slab. */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-brand-ink/70"
+                />
 
                 <div className="absolute left-5 top-5">
-                  <span className="inline-flex items-center rounded-full border border-white/20 bg-brand-ink/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                  <span className="inline-flex items-center rounded-full border border-white/25 bg-brand-ink/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
                     {project.category}
                   </span>
                 </div>
@@ -79,8 +89,8 @@ export default function ProjectsPreview() {
                     )}
                   </div>
 
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-brand-ink">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-brand-ink/85 text-white transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-brand-ink">
+                    <ArrowUpRight className="h-4 w-4" aria-hidden />
                   </span>
                 </div>
               </div>

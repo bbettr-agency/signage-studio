@@ -63,7 +63,8 @@ body {
 }
 
 .illuminated-word {
-  animation: sign-on 1s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+  animation: sign-on 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both;
+  will-change: opacity, filter;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -71,5 +72,34 @@ body {
     animation: none;
     opacity: 1;
     filter: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Project card entrance — plain CSS so React key changes on filter clicks
+   deterministically restart the animation from the start. Framer's animate
+   was skipping frames on re-keyed mounts in production.
+   -------------------------------------------------------------------------- */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-in {
+  animation: card-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--stagger, 0) * 35ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
@@ -77,41 +77,46 @@ export default function ProjectsGallery() {
 
       {/* Grid — plain render, keyed on unique image path. Framer entrance
           animation applied per-item; no AnimatePresence so filter changes
-          swap the list cleanly with no ghost items stuck at opacity 0. */}
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          swap the list cleanly with no ghost items stuck at opacity 0.
+          Photography-led cards: the image fills the card, no big dark slab. */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((project, i) => (
-            <motion.article
-              /* Unique key per project — using the image path since the
-                 auto-generated title is intentionally the category name.
-                 Including `active` in the key means each filter click gets
-                 a fresh mount → clean fade-up entrance every time. */
-              key={active + "|" + project.image}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: (i % 12) * 0.03, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-brand-graphite"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={`${project.category} signage by Signage Studio`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-brand-ink/70 opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+          <article
+            /* Unique key per project + active filter — React re-mounts on
+               filter change, which deterministically restarts the .card-in
+               CSS animation from its keyframe 0%. */
+            key={active + "|" + project.image}
+            style={{ "--stagger": i % 12 } as CSSProperties}
+            className="card-in group relative overflow-hidden rounded-3xl border border-white/10 bg-brand-graphite"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={project.image}
+                alt={`${project.category} signage by Signage Studio`}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-[900ms] ease-out will-change-transform group-hover:scale-[1.04]"
+              />
 
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
-                  <span className="inline-flex items-center rounded-full border border-white/20 bg-brand-ink/60 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
-                    {project.category}
-                  </span>
-                  <span className="flex h-10 w-10 shrink-0 translate-y-2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:opacity-100">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </div>
+              {/* Subtle bottom shade — only the bottom quarter, only for badge
+                  contrast on bright images. Small solid block, not a slab. */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-brand-ink/55"
+              />
+
+              {/* Badge + arrow — sit on top of the small bottom shade */}
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
+                <span className="inline-flex items-center rounded-full border border-white/25 bg-brand-ink/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
+                  {project.category}
+                </span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-brand-ink/85 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <ArrowUpRight className="h-4 w-4" aria-hidden />
+                </span>
               </div>
-            </motion.article>
-          ))}
+            </div>
+          </article>
+        ))}
       </div>
     </SectionContainer>
   );
