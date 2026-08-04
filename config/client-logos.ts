@@ -27,9 +27,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "Obaro", src: "/images/client-logos/client-7.png" },
   { name: "Glasfit", src: "/images/client-logos/client-8.png" },
   { name: "Leatherman", src: "/images/client-logos/client-9.png" },
-  // Two new SVG slots — activate by uncommenting once the SVGs
-  // in /public/images/client-logos/1.svg and 2.svg contain real artwork
-  // (the currently uploaded files are empty <svg/> stubs).
-  // { name: "New Client 1", src: "/images/client-logos/1.svg" },
-  // { name: "New Client 2", src: "/images/client-logos/2.svg" },
+  // Two new SVG uploads — uploaded via GitHub 2026-08-04.
+  { name: "New Client 1", src: "/images/client-logos/1.svg" },
+  { name: "New Client 2", src: "/images/client-logos/2.svg" },
 ];
