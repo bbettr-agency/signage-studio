@@ -8,14 +8,26 @@ import { cn } from "@/utils/cn";
 type LogoMarqueeProps = {
   heading?: string;
   className?: string;
+  /**
+   * `section` (default) — self-contained tinted section with a heading; used
+   * as a top-level page section.
+   * `embedded` — bare track only, transparent background, no heading; used
+   * when the marquee lives inside another surface (e.g. the hero).
+   */
+  variant?: "section" | "embedded";
+  /**
+   * Multiplier applied on top of each logo's config height. Used to pump the
+   * strip louder without editing per-brand values. Default 1.
+   */
+  scale?: number;
 };
 
 /**
- * Seamless horizontal logo marquee.
+ * Seamless horizontal client-logo marquee.
  *
- * - Per-logo height (via CSS custom properties on `<img>` inline style) so
- *   compact/square logos can be bigger than wide wordmarks and every brand
- *   feels equally prominent. Widths stay `auto` — no stretching or cropping.
+ * - Per-logo height (CSS custom properties on `<img>` inline style) so square
+ *   marks can be bigger than wide wordmarks and every brand feels equally
+ *   prominent. Widths stay `auto` — no stretching or cropping.
  * - Two duplicated tracks translate -50% for a seamless loop. Per-item
  *   margin-right (not flex gap) so the loop lands on frame with no jump.
  * - `brightness-0 invert` forces every logo to a uniform bright-white outline
@@ -24,13 +36,55 @@ type LogoMarqueeProps = {
  * - Marquee pauses on hover.
  * - `prefers-reduced-motion: reduce` disables the animation and shows a
  *   static wrap grid instead.
- * - Vertically centred with a compact section — no more empty strip feel.
  */
 export default function LogoMarquee({
   heading = "Trusted by businesses to bring their brands to life",
   className,
+  variant = "section",
+  scale = 1,
 }: LogoMarqueeProps) {
   const track = [...clientLogos, ...clientLogos];
+
+  const marquee = (
+    <>
+      {/* Marquee (default) */}
+      <div className="group relative overflow-hidden motion-reduce:hidden">
+        <div
+          className="flex w-max animate-marquee-slow items-center group-hover:[animation-play-state:paused] md:animate-marquee"
+          aria-hidden
+        >
+          {track.map((logo, i) => (
+            <LogoImg key={`${logo.src}-${i}`} logo={logo} scale={scale} />
+          ))}
+        </div>
+      </div>
+
+      {/* Reduced-motion fallback: static wrap grid */}
+      <div className="mx-auto hidden max-w-6xl flex-wrap items-center justify-center gap-x-14 gap-y-10 px-6 motion-reduce:flex lg:px-8">
+        {clientLogos.map((logo) => (
+          <LogoImg key={logo.src} logo={logo} scale={scale} labelled />
+        ))}
+      </div>
+
+      {/* SR-only list so screen readers can read every client name */}
+      <ul className="sr-only">
+        {clientLogos.map((logo) => (
+          <li key={`sr-${logo.src}`}>{logo.name}</li>
+        ))}
+      </ul>
+    </>
+  );
+
+  if (variant === "embedded") {
+    return (
+      <div
+        className={cn("relative", className)}
+        aria-label="Clients we work with"
+      >
+        {marquee}
+      </div>
+    );
+  }
 
   return (
     <section
@@ -49,31 +103,7 @@ export default function LogoMarquee({
         </h2>
       </div>
 
-      {/* Marquee (default) */}
-      <div className="group relative overflow-hidden motion-reduce:hidden">
-        <div
-          className="flex w-max animate-marquee-slow items-center group-hover:[animation-play-state:paused] md:animate-marquee"
-          aria-hidden
-        >
-          {track.map((logo, i) => (
-            <LogoImg key={`${logo.src}-${i}`} logo={logo} />
-          ))}
-        </div>
-      </div>
-
-      {/* Reduced-motion fallback: static wrap grid */}
-      <div className="mx-auto hidden max-w-6xl flex-wrap items-center justify-center gap-x-14 gap-y-10 px-6 motion-reduce:flex lg:px-8">
-        {clientLogos.map((logo) => (
-          <LogoImg key={logo.src} logo={logo} labelled />
-        ))}
-      </div>
-
-      {/* SR-only list so screen readers can read every client name */}
-      <ul className="sr-only">
-        {clientLogos.map((logo) => (
-          <li key={`sr-${logo.src}`}>{logo.name}</li>
-        ))}
-      </ul>
+      {marquee}
     </section>
   );
 }
@@ -81,25 +111,34 @@ export default function LogoMarquee({
 /**
  * Individual logo — uses CSS variables so per-logo mobile/desktop heights
  * can be driven from config without leaving the component code messy.
+ * The `scale` multiplier lets a specific placement (e.g. the hero) pump the
+ * whole set louder without editing per-brand values.
  */
 function LogoImg({
   logo,
   labelled = false,
+  scale = 1,
 }: {
   logo: (typeof clientLogos)[number];
   labelled?: boolean;
+  scale?: number;
 }) {
+  const hSm = Math.round((logo.heightMobilePx ?? 72) * scale);
+  const hLg = Math.round((logo.heightDesktopPx ?? 128) * scale);
+  const mrSm = Math.round(48 * scale);
+  const mrLg = Math.round(64 * scale);
+
   const style = {
-    // Falling back to sensible defaults if config omits the field.
-    "--logo-h-sm": `${logo.heightMobilePx ?? 72}px`,
-    "--logo-h-lg": `${logo.heightDesktopPx ?? 128}px`,
+    "--logo-h-sm": `${hSm}px`,
+    "--logo-h-lg": `${hLg}px`,
+    marginRight: `${mrSm}px`,
     height: "var(--logo-h-sm)",
   } as CSSProperties;
 
   return (
     <div
-      className="mr-12 flex shrink-0 items-center md:mr-16"
-      style={style}
+      className="flex shrink-0 items-center md:[margin-right:var(--mr-lg)]"
+      style={{ ...style, ["--mr-lg" as string]: `${mrLg}px` }}
       title={logo.name}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}

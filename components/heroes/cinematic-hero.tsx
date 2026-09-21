@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { MapPin, Star } from "lucide-react";
 
-import { clientLogos } from "@/config/client-logos";
 import { siteConfig } from "@/config/site-config";
 import { heroImage, heroImageAlt } from "@/config/projects-config";
 import Button from "@/components/ui/button";
+import LogoMarquee from "@/components/sections/logo-marquee";
 import { Reveal, heroStack } from "@/engine/motion";
 
 /**
@@ -23,10 +23,9 @@ import { Reveal, heroStack } from "@/engine/motion";
  */
 export default function CinematicHero() {
   const hero = heroStack({ character: "considered" });
-  const trustedLogos = clientLogos.slice(0, 6);
 
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-brand-ink text-white">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-brand-ink text-white">
       {/* Real project photography — LCP media, priority preloaded, no fade. */}
       <div className="absolute inset-0">
         <Image
@@ -43,8 +42,9 @@ export default function CinematicHero() {
         <div className="absolute inset-0 bg-brand-ink/75" />
       </div>
 
-      {/* Content column: centred, sensibly narrow so headline reads at all sizes. */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col justify-center px-6 pb-16 pt-36 text-center lg:px-8 lg:pb-24 lg:pt-40">
+      {/* Content column: centred, sensibly narrow so headline reads at all sizes.
+          `flex-1` claims the space between the navbar spacer and the marquee. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center px-6 pb-10 pt-36 text-center lg:px-8 lg:pb-14 lg:pt-40">
         <Reveal
           {...hero.step(0)}
           className="mx-auto inline-flex w-fit items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85 backdrop-blur"
@@ -116,32 +116,18 @@ export default function CinematicHero() {
           <span>Nationwide installs</span>
         </div>
 
-        {/* Trusted-by strip — was the standalone section immediately below the
-            hero. Pulled into the hero so trust is established before the first
-            scroll. Static row (no reveal, no marquee) so it doesn't add to the
-            entrance choreography and stays under the 900ms hero ceiling. */}
-        <div className="mx-auto mt-12 w-full max-w-4xl border-t border-white/10 pt-8">
-          <p className="text-center text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40">
-            Trusted by
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-5 md:gap-x-14">
-            {trustedLogos.map((logo) => {
-              const desktopH = logo.heightDesktopPx ?? 100;
-              const scaledH = Math.round(desktopH * 0.4);
-              return (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  key={logo.src}
-                  src={logo.src}
-                  alt={`${logo.name} — Signage Studio client`}
-                  draggable={false}
-                  style={{ height: `${scaledH}px` }}
-                  className="w-auto select-none brightness-0 invert opacity-70 transition-opacity duration-300 hover:opacity-100"
-                />
-              );
-            })}
-          </div>
-        </div>
+      </div>
+
+      {/* Trusted-by marquee — full-bleed inside the hero, anchored to the
+          bottom of the 100svh area by `flex-col` above. Scale 1.4 so logos
+          are unmissable. Pure CSS animation (auto-scroll, pause on hover);
+          prefers-reduced-motion falls back to a static wrap. Above-the-fold
+          safe: no opacity fade, no observer wait. */}
+      <div className="relative z-10 w-full shrink-0 pb-6 md:pb-10">
+        <p className="mb-5 text-center text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45 md:mb-7">
+          Trusted by
+        </p>
+        <LogoMarquee variant="embedded" scale={1.4} />
       </div>
     </section>
   );
