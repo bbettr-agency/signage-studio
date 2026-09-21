@@ -50,7 +50,7 @@ export default function GoogleReviews() {
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className="h-4 w-4 fill-brand-accentDark text-brand-accentDark"
+                className="h-4 w-4 fill-brand-primary text-brand-primary"
               />
             ))}
           </span>

@@ -5,6 +5,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { createMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/config/site-config";
 import FloatingActions from "@/components/ui/floating-actions";
+import { MotionProvider, NOSCRIPT_FALLBACK } from "@/engine/motion";
 
 const body = Inter({
   subsets: ["latin"],
@@ -65,6 +66,10 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0B0B0B" />
+        {/* NO-JS safety: keep every below-fold Reveal visible if JS never runs. */}
+        <noscript>
+          <style>{NOSCRIPT_FALLBACK}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -73,8 +78,12 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-brand-ink pb-24 text-white antialiased md:pb-0">
-        {children}
-        <FloatingActions />
+        {/* MotionProvider runs LazyMotion strict + reducedMotion="user" for the
+            whole tree. Any component importing motion/react directly will throw. */}
+        <MotionProvider>
+          {children}
+          <FloatingActions />
+        </MotionProvider>
       </body>
     </html>
   );

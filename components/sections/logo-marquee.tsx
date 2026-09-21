@@ -35,7 +35,7 @@ export default function LogoMarquee({
   return (
     <section
       className={cn(
-        "relative border-y border-white/5 bg-brand-ink py-10 md:py-14",
+        "relative border-y border-white/5 bg-brand-charcoal py-10 md:py-14",
         className
       )}
       aria-label="Clients we work with"

@@ -21,7 +21,7 @@ export default function SectionContainer({
     <Tag
       id={id}
       className={cn(
-        "relative px-6 py-24 md:py-32 lg:px-8",
+        "relative px-6 py-20 md:py-28 lg:px-8",
         className
       )}
     >

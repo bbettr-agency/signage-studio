@@ -1,9 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+
+import { Reveal, heroStack } from "@/engine/motion";
 
 type Crumb = { label: string; href?: string };
 
@@ -15,6 +14,11 @@ type PageHeroProps = {
   breadcrumbs?: Crumb[];
 };
 
+/**
+ * Interior page hero. The H1 is the LCP element and is never animated
+ * (per SYSTEM/DESIGN-LANGUAGE/02-MOTION-SYSTEM.md §5).
+ * Any `priority` image sits outside every Reveal.
+ */
 export default function PageHero({
   eyebrow,
   title,
@@ -22,6 +26,8 @@ export default function PageHero({
   image,
   breadcrumbs,
 }: PageHeroProps) {
+  const hero = heroStack({ character: "considered" });
+
   return (
     <section className="relative overflow-hidden bg-brand-ink text-white">
       {image && (
@@ -37,17 +43,14 @@ export default function PageHero({
         </div>
       )}
 
-      {/* Solid dark overlay — no gradients. */}
+      {/* Solid dark overlay — legibility, no gradients. */}
       <div className="absolute inset-0 bg-brand-ink/85" />
-      <div className="pointer-events-none absolute -top-24 left-1/3 h-[420px] w-[420px] rounded-full bg-brand-primary/15 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pb-20 pt-36 md:pb-28 md:pt-44 lg:px-8">
         {breadcrumbs && (
-          <motion.nav
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            aria-label="Breadcrumb"
+          <Reveal
+            {...hero.step(0)}
+            as="nav"
             className="mb-8 flex items-center gap-1.5 text-xs text-white/45"
           >
             {breadcrumbs.map((crumb, i) => (
@@ -67,29 +70,33 @@ export default function PageHero({
                 )}
               </span>
             ))}
-          </motion.nav>
+          </Reveal>
         )}
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <Reveal {...hero.step(1)}>
           <div className="inline-flex items-center gap-2.5 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-primary backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-primary shadow-[0_0_8px_rgba(0,136,150,0.9)]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-primary" />
             {eyebrow}
           </div>
+        </Reveal>
 
-          <h1 className="mt-7 max-w-4xl font-display text-5xl font-bold leading-[0.98] tracking-tight md:text-6xl lg:text-7xl">
-            {title}
-          </h1>
+        {/* LCP element — must not animate. */}
+        <h1
+          {...hero.lcp}
+          className="mt-7 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl"
+        >
+          {title}
+        </h1>
 
-          {description && (
-            <p className="mt-7 max-w-2xl text-base leading-7 text-white/65 md:text-lg md:leading-8">
-              {description}
-            </p>
-          )}
-        </motion.div>
+        {description && (
+          <Reveal
+            {...hero.step(2)}
+            as="p"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg"
+          >
+            {description}
+          </Reveal>
+        )}
       </div>
     </section>
   );

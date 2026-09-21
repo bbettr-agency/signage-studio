@@ -20,18 +20,24 @@ type ButtonProps = {
 };
 
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink";
+  "group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primaryLight focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink";
 
 const sizes: Record<ButtonSize, string> = {
   md: "px-6 py-3 text-sm",
   lg: "px-8 py-4 text-sm md:text-base",
 };
 
+/**
+ * Colour law: `accent` is the primary CTA colour sitewide — a trained signal
+ * for "act here". It appears nowhere else (see SYSTEM/01-DESIGN-TOKENS §1).
+ * Secondary paths use `primary` (trust colour). Ghost is for de-emphasised
+ * paths on dark surfaces.
+ */
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-ink",
+    "bg-brand-accent text-brand-ink hover:bg-brand-accentDark",
   secondary:
-    "bg-white text-brand-ink hover:bg-brand-accent",
+    "bg-brand-primary text-white hover:bg-brand-primaryDark",
   ghost:
     "bg-white/5 text-white backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-brand-primary/50",
   outline:

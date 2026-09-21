@@ -1,11 +1,9 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { siteConfig } from "@/config/site-config";
 import SectionContainer from "@/components/layout/section-container";
 import FormShell from "@/components/ui/form-shell";
+import { Reveal } from "@/engine/motion";
 
 const details = [
   {
@@ -50,24 +48,19 @@ export default function ContactForm() {
     >
       <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         {/* Left — details */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
+        <Reveal>
           <div className="inline-flex items-center gap-2.5 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-primary">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-primary" />
             Get In Touch
           </div>
 
-          <h2 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-brand-ink md:text-5xl">
+          <h2 className="mt-6 font-display text-3xl font-bold leading-[1.08] tracking-tight text-brand-ink md:text-4xl lg:text-5xl">
             Let&apos;s scope your
             <br />
             <span className="text-brand-ink/45">signage project.</span>
           </h2>
 
-          <p className="mt-6 max-w-md text-base leading-7 text-brand-ink/70">
+          <p className="mt-6 max-w-md text-base leading-relaxed text-brand-ink/70 md:text-lg">
             Send through your brief and we&apos;ll respond within one business day
             with a detailed, line-item quote — no obligation.
           </p>
@@ -108,15 +101,10 @@ export default function ContactForm() {
               );
             })}
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Right — dark FormShell = focal action card on cream */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
+        <Reveal>
           <FormShell
             title="Request A Quote"
             description="Complete the form and our team will be in touch shortly."
@@ -144,12 +132,12 @@ export default function ContactForm() {
               </p>
               <p className="mt-2 max-w-xs text-xs leading-5 text-white/45">
                 Paste your GHL form embed code into the{" "}
-                <code className="text-brand-accent">#ghl-quote-form</code>{" "}
-                container in <code className="text-brand-accent">contact-form.tsx</code>.
+                <code className="text-brand-primary">#ghl-quote-form</code>{" "}
+                container in <code className="text-brand-primary">contact-form.tsx</code>.
               </p>
             </div>
           </FormShell>
-        </motion.div>
+        </Reveal>
       </div>
     </SectionContainer>
   );
