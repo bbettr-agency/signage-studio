@@ -1,51 +1,54 @@
 import Image from "next/image";
 import { MapPin, Star } from "lucide-react";
 
+import { clientLogos } from "@/config/client-logos";
 import { siteConfig } from "@/config/site-config";
-import { heroImage } from "@/config/projects-config";
+import { heroImage, heroImageAlt } from "@/config/projects-config";
 import Button from "@/components/ui/button";
 import { Reveal, heroStack } from "@/engine/motion";
 
-const HERO_IMAGE = heroImage;
-
 /**
- * Signage Studio hero — OS v2.7 compliant.
+ * Signage Studio hero — OS v2.7 compliant, centre-aligned composition.
  *
- * - `heroStack().lcp` on the H1: the LCP element is never animated, so it paints
- *   at first paint and survives a no-JS load. This is the single hardest motion
- *   rule the OS enforces (`SYSTEM/DESIGN-LANGUAGE/02-MOTION-SYSTEM.md` §5).
- * - Supporting elements ride the delay ladder via `hero.step(n)`.
- * - `priority` image sits OUTSIDE any Reveal (no opacity fade on the LCP media).
- * - Accent colour is reserved for the primary CTA elsewhere on the page; the
- *   hero highlight word uses `brand-primary` (teal) so the accent stays a
- *   trained signal for "act here".
- * - Type scale on H1 uses the approved tokens (no arbitrary sizes).
+ * - Backdrop: real large-format Chromadek install for Safari Outdoor. Cinematic
+ *   1800×810 aspect works cleanly at full-bleed; a heavy solid ink overlay
+ *   keeps the type crisp (`SYSTEM/DESIGN-LANGUAGE/00-DESIGN-LANGUAGE.md` §5,
+ *   contrast measured over image regions).
+ * - `heroStack().lcp` on the H1 — LCP element never animates
+ *   (`02-MOTION-SYSTEM.md` §5). Priority image sits outside every Reveal.
+ * - Content is centred; the trust rail + client-logo strip immediately after
+ *   the CTAs collapse the "hero → trust section" gap into one confidence step.
+ * - Total motion choreography stays under the 900 ms hero ceiling by
+ *   consolidating supporting elements into two Reveal steps.
  */
 export default function CinematicHero() {
   const hero = heroStack({ character: "considered" });
+  const trustedLogos = clientLogos.slice(0, 6);
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-brand-ink text-white">
       {/* Real project photography — LCP media, priority preloaded, no fade. */}
       <div className="absolute inset-0">
         <Image
-          src={HERO_IMAGE}
-          alt="Illuminated channel-letter signage installed by Signage Studio"
+          src={heroImage}
+          alt={heroImageAlt}
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-55"
+          className="object-cover object-center opacity-45"
         />
-        {/* Solid tinted overlays — no gradients. Two flat layers give both
-            base contrast for the whole viewport and stronger contrast on the
-            text column so the headline stays crisp. */}
-        <div className="absolute inset-0 bg-brand-ink/55" />
-        <div className="absolute inset-y-0 left-0 w-full bg-brand-ink/45 md:w-2/3" />
+        {/* Solid dark overlay — no gradients. Heavier than the standard page
+            hero so the busy install imagery becomes atmospheric texture and
+            the centred type remains high-contrast. */}
+        <div className="absolute inset-0 bg-brand-ink/75" />
       </div>
 
-      {/* Content — clean editorial column, no boxes. */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-6 pb-16 pt-40 lg:px-8 lg:pb-24 lg:pt-44">
-        <Reveal {...hero.step(0)} className="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85 backdrop-blur">
+      {/* Content column: centred, sensibly narrow so headline reads at all sizes. */}
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col justify-center px-6 pb-16 pt-36 text-center lg:px-8 lg:pb-24 lg:pt-40">
+        <Reveal
+          {...hero.step(0)}
+          className="mx-auto inline-flex w-fit items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85 backdrop-blur"
+        >
           <span className="h-1.5 w-1.5 rounded-full bg-brand-primary" />
           Signage Studio · Silverton, Pretoria · Since {siteConfig.established}
         </Reveal>
@@ -53,18 +56,27 @@ export default function CinematicHero() {
         {/* LCP element — must not animate. `hero.lcp` is deliberately empty. */}
         <h1
           {...hero.lcp}
-          className="mt-8 max-w-5xl font-display text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+          className="mx-auto mt-8 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl"
         >
           Professional signage that makes your brand{" "}
           <span className="text-brand-primary">impossible</span> to miss.
         </h1>
 
-        <Reveal {...hero.step(1)} as="p" className="mt-7 max-w-2xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
+        <Reveal
+          {...hero.step(1)}
+          as="p"
+          className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg"
+        >
           Vehicle branding, building signage and custom installations —
-          manufactured and installed in-house since {siteConfig.established}.
+          manufactured and installed in-house from Silverton, Pretoria since
+          {" "}
+          {siteConfig.established}.
         </Reveal>
 
-        <Reveal {...hero.step(2)} className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <Reveal
+          {...hero.step(2)}
+          className="mx-auto mt-10 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center"
+        >
           <Button
             href={siteConfig.quoteHref}
             variant="primary"
@@ -82,8 +94,8 @@ export default function CinematicHero() {
           </Button>
         </Reveal>
 
-        {/* Trust rail — thin divider, single line, no boxed stats. */}
-        <Reveal {...hero.step(3)} className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6 text-sm text-white/60">
+        {/* Trust rail — single line, centred. */}
+        <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/65">
           <span className="inline-flex items-center gap-2">
             <span className="flex" aria-hidden>
               {[...Array(5)].map((_, i) => (
@@ -93,22 +105,43 @@ export default function CinematicHero() {
                 />
               ))}
             </span>
-            <span className="font-medium text-white/85">
-              5.0 · 200+ clients
-            </span>
+            <span className="font-medium text-white/90">5.0 · 200+ clients</span>
           </span>
-
           <span className="hidden h-3 w-px bg-white/15 sm:block" aria-hidden />
-
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5 text-brand-primary" />
             Silverton, Pretoria
           </span>
-
           <span className="hidden h-3 w-px bg-white/15 sm:block" aria-hidden />
+          <span>Nationwide installs</span>
+        </div>
 
-          <span>Nationwide installs · In-house crews</span>
-        </Reveal>
+        {/* Trusted-by strip — was the standalone section immediately below the
+            hero. Pulled into the hero so trust is established before the first
+            scroll. Static row (no reveal, no marquee) so it doesn't add to the
+            entrance choreography and stays under the 900ms hero ceiling. */}
+        <div className="mx-auto mt-12 w-full max-w-4xl border-t border-white/10 pt-8">
+          <p className="text-center text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40">
+            Trusted by
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-5 md:gap-x-14">
+            {trustedLogos.map((logo) => {
+              const desktopH = logo.heightDesktopPx ?? 100;
+              const scaledH = Math.round(desktopH * 0.4);
+              return (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={logo.src}
+                  src={logo.src}
+                  alt={`${logo.name} — Signage Studio client`}
+                  draggable={false}
+                  style={{ height: `${scaledH}px` }}
+                  className="w-auto select-none brightness-0 invert opacity-70 transition-opacity duration-300 hover:opacity-100"
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

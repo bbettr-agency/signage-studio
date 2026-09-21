@@ -75,5 +75,13 @@ export const featuredProjects: ProjectItem[] = [
   },
 ];
 
-/** Strongest single image — used for the homepage hero. */
-export const heroImage = "/projects/neon-rope/neon-rope-1.jpg";
+/**
+ * Strongest single image — used for the homepage hero.
+ *
+ * The Chromadek install on Safari Outdoor's storefront: real large-format
+ * capability, real recognisable client (Safari Outdoor's logo also appears in
+ * the hero's Trusted-By strip), cinematic 1800×810 aspect for full-bleed.
+ */
+export const heroImage = "/projects/chromadek-signs/chromadek-signs-1.jpg";
+export const heroImageAlt =
+  "Large-format Chromadek signage installed on the Safari Outdoor storefront by Signage Studio";

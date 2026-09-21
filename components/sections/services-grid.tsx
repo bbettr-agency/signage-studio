@@ -23,7 +23,7 @@ export default function ServicesGrid() {
   const remaining = servicesConfig.filter((s) => !s.featured);
 
   return (
-    <SectionContainer id="services" className="bg-brand-ink text-white">
+    <SectionContainer id="services" className="bg-brand-charcoal text-white">
       {/* 1 · Editorial statement */}
       <Reveal>
         <div className="grid gap-10 md:grid-cols-[1.15fr_1fr] md:items-end md:gap-16">

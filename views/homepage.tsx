@@ -1,6 +1,5 @@
 import PremiumNavbar from "@/components/navbars/premium-navbar";
 import CinematicHero from "@/components/heroes/cinematic-hero";
-import TrustedBy from "@/components/sections/trusted-by";
 import ServicesGrid from "@/components/sections/services-grid";
 import WhyUs from "@/components/sections/why-us";
 import ProjectsPreview from "@/components/sections/projects-preview";
@@ -14,19 +13,18 @@ import PremiumFooter from "@/components/Footers/premium-footer";
 /**
  * Surface rhythm (OS Design Language §4 — no two adjacent sections share a tone):
  *
- *   hero(ink) → marquee(charcoal) → services(ink) → whyus(cream) →
+ *   hero(ink, includes trusted-by strip) → services(ink) → whyus(cream) →
  *   projects(graphite) → process(cream) → stats(charcoal) → reviews(cream) →
  *   faq(charcoal) → cta(ink) → footer(ink handled inside footer)
  *
- * Cream sections separated by a dark break each time; the stats band is the
- * factual proof beat between "how we work" and "what our clients say".
+ * The old standalone TrustedBy section is now folded into the hero as a
+ * compact client-logo strip so trust lands before the first scroll.
  */
 export default function Homepage() {
   return (
     <main className="overflow-hidden bg-brand-ink text-white">
       <PremiumNavbar />
       <CinematicHero />
-      <TrustedBy />
       <ServicesGrid />
       <WhyUs />
       <ProjectsPreview />
